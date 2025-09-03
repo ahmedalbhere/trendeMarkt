@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ترندي ماركت - متجر المنتجات المميزة</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- شاشة التحميل -->
+    <div id="loading-screen">
+        <div class="loader"></div>
+        <h2>ترندي ماركت</h2>
+        <p>أنت غني! لدينا كل ما تحتاجه</p>
+    </div>
+
+    <!-- صفحة العميل -->
+    <div id="client-page">
+        <header>
+            <div class="container">
+                <nav>
+                    <div class="logo">
+                        <i class="fas fa-shopping-bag"></i> ترندي ماركت
+                    </div>
+                    <div class="search-box">
+                        <input type="text" placeholder="ابحث عن المنتجات...">
+                        <button><i class="fas fa-search"></i> بحث</button>
+                    </div>
+                    <div class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <main class="container">
+            <div class="hero-section">
+                <h1>أفضل المنتجات لعملائنا الأغنياء</h1>
+                <p>اكتشف أحدث المنتجات بأفضل الأسعار</p>
+            </div>
+            
+            <div class="categories">
+                <button class="category-btn active" data-category="all">الكل</button>
+                <button class="category-btn" data-category="electronics">إلكترونيات</button>
+                <button class="category-btn" data-category="fashion">موضة</button>
+                <button class="category-btn" data-category="home">منزلية</button>
+            </div>
+            
+            <div class="products-grid" id="products-container">
+                <!-- سيتم ملئها بالمنتجات باستخدام JavaScript -->
+            </div>
+        </main>
+
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>ترندي ماركت</h3>
+                        <p>متجرك الأول للمنتجات المميزة بأفضل الأسعار</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>روابط سريعة</h3>
+                        <ul>
+                            <li><a href="#">الرئيسية</a></li>
+                            <li><a href="#">منتجاتنا</a></li>
+                            <li><a href="#">عن الشركة</a></li>
+                            <li><a href="#">اتصل بنا</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>وسائل التواصل</h3>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="copyright">
+                    <p>© 2023 ترندي ماركت - كل الحقوق محفوظة</p>
+                    <p>صمم خصيصًا للأغنياء الذين يستحقون الأفضل</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- صفحة الإدارة -->
+    <div id="admin-page">
+        <div class="container">
+            <div class="admin-panel">
+                <div class="admin-header">
+                    <h2 class="admin-title">لوحة تحكم ترندي ماركت</h2>
+                    <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</button>
+                </div>
+                
+                <form id="add-product-form" class="product-form">
+                    <div class="form-group full-width">
+                        <label for="product-title">اسم المنتج</label>
+                        <input type="text" id="product-title" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="product-price">السعر (ج.م)</label>
+                        <input type="number" id="product-price" min="0" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="product-category">الفئة</label>
+                        <select id="product-category" required>
+                            <option value="electronics">إلكترونيات</option>
+                            <option value="fashion">موضة</option>
+                            <option value="home">منزلية</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="product-image">رابط الصورة</label>
+                        <input type="url" id="product-image" required>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="product-description">وصف المنتج</label>
+                        <textarea id="product-description" required></textarea>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <button type="submit" class="submit-btn"><i class="fas fa-plus"></i> إضافة منتج جديد</button>
+                    </div>
+                </form>
+                
+                <div class="admin-products">
+                    <h3>المنتجات الحالية</h3>
+                    <div class="admin-product-list" id="admin-products-container">
+                        <!-- سيتم ملئها بالمنتجات باستخدام JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
