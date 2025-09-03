@@ -24,12 +24,17 @@
                         <i class="fas fa-shopping-bag"></i> ترندي ماركت
                     </div>
                     <div class="search-box">
-                        <input type="text" placeholder="ابحث عن المنتجات...">
-                        <button><i class="fas fa-search"></i> بحث</button>
+                        <input type="text" id="search-input" placeholder="ابحث عن المنتجات...">
+                        <button id="search-btn"><i class="fas fa-search"></i> بحث</button>
                     </div>
-                    <div class="cart-icon">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-count">0</span>
+                    <div class="nav-buttons">
+                        <div class="cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">0</span>
+                        </div>
+                        <a href="admin.html" class="admin-link">
+                            <i class="fas fa-cog"></i> الإدارة
+                        </a>
                     </div>
                 </nav>
             </div>
@@ -48,8 +53,14 @@
                 <button class="category-btn" data-category="home">منزلية</button>
             </div>
             
-            <div class="products-grid" id="products-container">
-                <!-- سيتم ملئها بالمنتجات باستخدام JavaScript -->
+            <div id="products-container" class="products-grid">
+                <!-- المنتجات سيتم تحميلها من localStorage -->
+                <div class="no-products">
+                    <i class="fas fa-box-open"></i>
+                    <h3>لا توجد منتجات حالياً</h3>
+                    <p>يرجى الانتقال إلى صفحة الإدارة لإضافة منتجات جديدة</p>
+                    <a href="admin.html" class="admin-link-btn">الذهاب إلى صفحة الإدارة</a>
+                </div>
             </div>
         </main>
 
@@ -63,8 +74,8 @@
                     <div class="footer-section">
                         <h3>روابط سريعة</h3>
                         <ul>
-                            <li><a href="#">الرئيسية</a></li>
-                            <li><a href="#">منتجاتنا</a></li>
+                            <li><a href="index.html">الرئيسية</a></li>
+                            <li><a href="admin.html">لوحة التحكم</a></li>
                             <li><a href="#">عن الشركة</a></li>
                             <li><a href="#">اتصل بنا</a></li>
                         </ul>
