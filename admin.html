@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم ترندي ماركت</title>
+    <link rel="stylesheet" href="admin-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="login-page">
+        <div class="login-container">
+            <div class="login-form">
+                <div class="login-header">
+                    <i class="fas fa-lock"></i>
+                    <h2>تسجيل الدخول للإدارة</h2>
+                    <p>يرجى إدخال كلمة المرور للوصول إلى لوحة التحكم</p>
+                </div>
+                
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="password">كلمة المرور</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    
+                    <button type="submit" class="login-btn">
+                        <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+                    </button>
+                </form>
+                
+                <div id="login-error" class="error-message">
+                    كلمة المرور غير صحيحة. يرجى المحاولة مرة أخرى.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="admin-page" style="display: none;">
+        <div class="container">
+            <div class="admin-panel">
+                <div class="admin-header">
+                    <h2 class="admin-title">لوحة تحكم ترندي ماركت</h2>
+                    <button class="logout-btn" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                    </button>
+                </div>
+                
+                <div class="admin-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="products-count">0</h3>
+                            <p>المنتجات</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="orders-count">0</h3>
+                            <p>الطلبات</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="users-count">0</h3>
+                            <p>العملاء</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form id="add-product-form" class="product-form">
+                    <h3>إضافة منتج جديد</h3>
+                    <div class="form-group full-width">
+                        <label for="product-title">اسم المنتج</label>
+                        <input type="text" id="product-title" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="product-price">السعر (ج.م)</label>
+                        <input type="number" id="product-price" min="0" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="product-category">الفئة</label>
+                        <select id="product-category" required>
+                            <option value="electronics">إلكترونيات</option>
+                            <option value="fashion">موضة</option>
+                            <option value="home">منزلية</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="product-image">رابط الصورة</label>
+                        <input type="url" id="product-image" required>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="product-description">وصف المنتج</label>
+                        <textarea id="product-description" required></textarea>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-plus"></i> إضافة منتج جديد
+                        </button>
+                    </div>
+                </form>
+                
+                <div class="admin-products">
+                    <div class="section-header">
+                        <h3>المنتجات الحالية</h3>
+                        <button class="delete-all-btn" onclick="deleteAllProducts()">
+                            <i class="fas fa-trash"></i> حذف الكل
+                        </button>
+                    </div>
+                    <div class="admin-product-list" id="admin-products-container">
+                        <!-- المنتجات سيتم تحميلها من localStorage -->
+                        <div class="no-products">
+                            <i class="fas fa-box-open"></i>
+                            <h3>لا توجد منتجات حالياً</h3>
+                            <p>استخدم النموذج أعلاه لإضافة منتجات جديدة</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
