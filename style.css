@@ -112,12 +112,6 @@ nav {
     background: #2575fc;
 }
 
-.nav-buttons {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
 .cart-icon {
     position: relative;
     font-size: 24px;
@@ -139,22 +133,6 @@ nav {
     align-items: center;
     font-size: 12px;
     font-weight: bold;
-}
-
-.admin-link {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    padding: 8px 15px;
-    border-radius: 5px;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    transition: background 0.3s;
-}
-
-.admin-link:hover {
-    background: rgba(255, 255, 255, 0.3);
 }
 
 /* قسم البطل */
@@ -225,22 +203,6 @@ nav {
 
 .no-products p {
     color: #666;
-    margin-bottom: 20px;
-}
-
-.admin-link-btn {
-    background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
-    color: white;
-    padding: 12px 25px;
-    border-radius: 5px;
-    text-decoration: none;
-    display: inline-block;
-    font-weight: 600;
-    transition: opacity 0.3s;
-}
-
-.admin-link-btn:hover {
-    opacity: 0.9;
 }
 
 /* شبكة المنتجات */
@@ -388,11 +350,6 @@ footer {
     
     .search-box {
         width: 100%;
-    }
-    
-    .nav-buttons {
-        width: 100%;
-        justify-content: center;
     }
     
     .footer-content {
