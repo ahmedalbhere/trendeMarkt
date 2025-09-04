@@ -66,8 +66,7 @@ function renderProducts(category = 'all', productsList = null) {
             <div class="no-products">
                 <i class="fas fa-box-open"></i>
                 <h3>لا توجد منتجات حالياً</h3>
-                <p>يرجى الانتقال إلى صفحة الإدارة لإضافة منتجات جديدة</p>
-                <a href="admin.html" class="admin-link-btn">الذهاب إلى صفحة الإدارة</a>
+                <p>سيتم إضافة المنتجات قريباً</p>
             </div>
         `;
         return;
