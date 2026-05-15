@@ -2,632 +2,359 @@
 <html lang="ar-SA" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم ترند قطعة واحدة | إدارة المنتجات والطلبات</title>
     
-    <!-- SEO Meta Tags أساسية -->
-    <title>ترند قطعة واحدة | أعلى شراء في السعودية | أحدث المنتجات والترندات</title>
-    <meta name="description" content="ترند قطعة واحدة - أكبر متجر للأعلى مبيعاً والترند في السعودية. اكتشف أفضل المنتجات في الإلكترونيات، الفاشون، والترفيهية. أعلى شراء وأفضل الأسعار.">
-    <meta name="keywords" content="ترند قطعة واحدة, أعلى شراء في السعودية, ترند السعودية, منتجات ترند, إلكترونيات ترند, فاشون ترند, ألعاب ترفيهية, أحدث المنتجات السعودية">
-    <meta name="author" content="ترند قطعة واحدة">
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-    <meta name="googlebot" content="index, follow">
-    <meta name="language" content="Arabic">
-    <meta name="revisit-after" content="1 day">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://trendonepiece.com/">
-    <meta property="og:title" content="ترند قطعة واحدة - أعلى شراء في السعودية">
-    <meta property="og:description" content="أفضل المنتجات الأعلى مبيعاً والترند في السعودية. اكتشف الإلكترونيات، الفاشون، والترفيهية بأفضل الأسعار.">
-    <meta property="og:image" content="https://trendonepiece.com/og-image.jpg">
-    <meta property="og:site_name" content="ترند قطعة واحدة">
-    <meta property="og:locale" content="ar_SA">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="ترند قطعة واحدة - أعلى شراء في السعودية">
-    <meta name="twitter:description" content="أفضل المنتجات الأعلى مبيعاً والترند في السعودية">
-    <meta name="twitter:image" content="https://trendonepiece.com/twitter-image.jpg">
-    
-    <!-- روابط كانونيكال -->
-    <link rel="canonical" href="https://trendonepiece.com/">
-    <link rel="alternate" href="https://trendonepiece.com/" hreflang="ar-SA">
-    
-    <!-- Preconnect لتحسين سرعة التحميل -->
-    <link rel="preconnect" href="https://www.gstatic.com">
-    <link rel="preconnect" href="https://coffee-dda5d-default-rtdb.firebaseio.com">
-    <link rel="dns-prefetch" href="https://firebase.google.com">
-    
-    <!-- Firebase SDK مع تحميل غير متزامن -->
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js" defer></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js" defer></script>
-    
-    <!-- Schema Markup (بيانات منظمة للمنتجات) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebSite",
-          "@id": "https://trendonepiece.com/#website",
-          "url": "https://trendonepiece.com/",
-          "name": "ترند قطعة واحدة",
-          "description": "أعلى شراء في السعودية - أحدث المنتجات والترندات",
-          "inLanguage": "ar-SA",
-          "publisher": {
-            "@type": "Organization",
-            "name": "ترند قطعة واحدة",
-            "logo": {
-              "@type": "ImageObject",
-              "url": "https://trendonepiece.com/logo.png"
-            }
-          }
-        },
-        {
-          "@type": "BreadcrumbList",
-          "@id": "https://trendonepiece.com/#breadcrumb",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "الرئيسية",
-              "item": "https://trendonepiece.com/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "أعلى شراء في السعودية",
-              "item": "https://trendonepiece.com/trending"
-            }
-          ]
-        }
-      ]
-    }
-    </script>
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
     
     <style>
-        /* تحسين Core Web Vitals */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-        
-        /* تحسين الخطوط وجعلها سريعة التحميل */
-        @font-face {
-            font-family: 'Cairo';
-            font-style: normal;
-            font-weight: 400;
-            font-display: swap;
-            src: url(https://fonts.gstatic.com/s/cairo/v28/SLXGc1nY6HkvalIkTpu0xg.woff2) format('woff2');
-        }
-        
-        @font-face {
-            font-family: 'Cairo';
-            font-style: normal;
-            font-weight: 700;
-            font-display: swap;
-            src: url(https://fonts.gstatic.com/s/cairo/v28/SLXGc1nY6HkvalIqTpu0xg.woff2) format('woff2');
+            font-family: 'Cairo', 'Tahoma', sans-serif;
         }
         
         body {
-            font-family: 'Cairo', 'Tahoma', sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background: #0f0f1a;
             padding: 20px;
-            color: #fff;
-        }
-        
-        /* تحسين الأداء باستخدام transform بدل margin/padding للحركات */
-        .header {
-            text-align: center;
-            padding: 30px;
-            background: linear-gradient(45deg, #ff416c, #ff4b2b);
-            border-radius: 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-            transform: translateZ(0);
-            will-change: transform;
-        }
-        
-        .header h1 {
-            font-size: clamp(1.8rem, 5vw, 2.5rem);
             color: white;
-            text-shadow: 3px 3px 0 rgba(0,0,0,0.5);
         }
         
-        .header p {
-            color: #ffeb3b;
-            font-size: clamp(1rem, 4vw, 1.2rem);
-            font-weight: bold;
-        }
-        
-        /* أزرار الأقسام المحسنة SEO */
-        .categories-bar {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-        
-        .cat-btn {
-            background: rgba(42,42,58,0.95);
-            color: white;
-            border: none;
-            padding: 10px 25px;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: translateZ(0);
-        }
-        
-        .cat-btn.active {
-            background: linear-gradient(45deg, #ff416c, #ff4b2b);
-            box-shadow: 0 0 15px rgba(255,65,108,0.5);
-        }
-        
-        .cat-btn:hover {
-            transform: scale(1.05);
-        }
-        
-        /* شبكة المنتجات مع تحسين الأداء */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
+        .container {
             max-width: 1400px;
             margin: 0 auto;
         }
         
-        /* تحسين LCP (Largest Contentful Paint) */
-        .product-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            background: #fff;
-            content-visibility: auto;
-            contain-intrinsic-size: auto 450px;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-        
-        .image-container {
-            width: 100%;
-            height: 250px;
-            overflow: hidden;
-            position: relative;
-            background: #f0f0f0;
-        }
-        
-        /* تحسين تحميل الصور */
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-            loading="lazy";
-            decoding="async";
-        }
-        
-        .product-card:hover .image-container img {
-            transform: scale(1.1);
-        }
-        
-        .trend-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #ff3366;
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 0.8rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-        
-        .product-info {
-            padding: 20px;
-            background: linear-gradient(135deg, #fff, #f9f9f9);
-        }
-        
-        .product-name {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #ff3366;
+        h1 {
             text-align: center;
+            margin-bottom: 30px;
+            color: #ff4b2b;
+            font-size: 2rem;
         }
         
-        .product-price {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #00d2ff;
-            text-align: center;
-            margin: 10px 0;
+        .section {
+            background: #1e1e2f;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 40px;
         }
         
-        .order-btn {
+        .section h2 {
+            color: #ffb347;
+            margin-bottom: 20px;
+            border-right: 4px solid #ff4b2b;
+            padding-right: 15px;
+        }
+        
+        input, select, textarea {
             width: 100%;
             padding: 12px;
+            border-radius: 10px;
+            border: none;
+            background: #2a2a3a;
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+        
+        button {
             background: linear-gradient(45deg, #ff416c, #ff4b2b);
             color: white;
+            padding: 12px 30px;
             border: none;
             border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s;
+            font-weight: bold;
+            transition: 0.3s;
         }
         
-        .order-btn:hover {
+        button:hover {
             transform: scale(1.02);
-            box-shadow: 0 5px 15px rgba(255,75,43,0.4);
+            opacity: 0.9;
         }
         
-        .empty {
-            text-align: center;
-            color: white;
-            font-size: 1.5rem;
-            padding: 50px;
+        .delete-btn {
+            background: #dc3545;
+            padding: 6px 15px;
         }
         
-        /* تحسين المودال للجوال */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            justify-content: center;
+        .complete-btn {
+            background: #28a745;
+            padding: 6px 15px;
+            margin-top: 10px;
+        }
+        
+        .product-item, .order-item {
+            background: #2a2a3a;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            z-index: 1000;
-            backdrop-filter: blur(5px);
+            flex-wrap: wrap;
+            gap: 10px;
         }
         
-        .modal-content {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 500px;
-            animation: modalFadeIn 0.3s ease;
-        }
-        
-        @keyframes modalFadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-        
-        .modal-content input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 2px solid #ddd;
+        .product-img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
             border-radius: 10px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
         }
         
-        .modal-content input:focus {
-            border-color: #ff416c;
-            outline: none;
+        .order-details {
+            flex: 1;
         }
         
-        /* فوتر محسن SEO */
-        .footer {
-            text-align: center;
-            padding: 30px;
-            margin-top: 40px;
-            background: rgba(0,0,0,0.5);
-            border-radius: 20px;
+        .order-details p {
+            margin: 5px 0;
         }
         
-        .footer a {
+        .highlight {
             color: #ffb347;
+            font-weight: bold;
+        }
+        
+        .edit-img-link {
+            background: #17a2b8;
+            padding: 6px 12px;
+            border-radius: 8px;
             text-decoration: none;
+            color: white;
+            display: inline-block;
+            font-size: 0.9rem;
+        }
+        
+        .flex-between {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        
+        .delete-all-btn {
+            background: #dc3545;
+            padding: 8px 20px;
+            font-size: 0.9rem;
+            margin-right: 15px;
         }
         
         @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-            .products-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            .cat-btn {
-                padding: 8px 16px;
-                font-size: 0.9rem;
-            }
-        }
-        
-        /* تحسين إمكانية الوصول */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                transition-duration: 0.01ms !important;
+            .product-item, .order-item {
+                flex-direction: column;
+                align-items: stretch;
             }
         }
     </style>
 </head>
 <body>
+<div class="container">
+    <h1>🔧 لوحة تحكم ترند قطعة واحدة</h1>
 
-<main>
-    <div class="header">
-        <h1>🔥 ترند قطعة واحدة | أعلى شراء في السعودية 🔥</h1>
-        <p>🇸🇦 اكتشف المنتجات الأكثر طلباً والترند في المملكة 🇸🇦</p>
+    <!-- قسم إضافة منتج جديد -->
+    <div class="section">
+        <h2>➕ إضافة منتج جديد</h2>
+        <input type="text" id="productImage" placeholder="رابط الصورة (Google Drive أو أي رابط مباشر)">
+        <input type="text" id="productName" placeholder="اسم المنتج">
+        <input type="number" id="productPrice" placeholder="السعر (ر.س)">
+        <select id="productCategory">
+            <option value="electronics">📱 إلكترونيات</option>
+            <option value="fashion">👗 فاشون</option>
+            <option value="entertainment">🎮 ترفيهية</option>
+        </select>
+        <button onclick="addProduct()">✨ إضافة المنتج ✨</button>
     </div>
 
-    <!-- أقسام محسنة SEO -->
-    <nav aria-label="أقسام المنتجات">
-        <div class="categories-bar">
-            <button class="cat-btn active" data-cat="all" aria-label="عرض جميع المنتجات">الكل</button>
-            <button class="cat-btn" data-cat="electronics" aria-label="منتجات الإلكترونيات">📱 إلكترونيات</button>
-            <button class="cat-btn" data-cat="fashion" aria-label="منتجات الفاشون">👗 فاشون</button>
-            <button class="cat-btn" data-cat="entertainment" aria-label="المنتجات الترفيهية">🎮 ترفيهية</button>
-        </div>
-    </nav>
+    <!-- قسم المنتجات المعروضة -->
+    <div class="section">
+        <h2>📦 المنتجات المعروضة</h2>
+        <div id="productsList"></div>
+    </div>
 
-    <!-- قائمة المنتجات -->
-    <div class="products-grid" id="productsGrid" aria-label="قائمة المنتجات الأعلى شراء"></div>
-</main>
-
-<footer class="footer">
-    <p>© 2025 ترند قطعة واحدة - أعلى شراء في السعودية | جميع الحقوق محفوظة</p>
-    <p>📍 المملكة العربية السعودية | 🛍️ أفضل المنتجات الأعلى مبيعاً</p>
-    <p><a href="/privacy">سياسة الخصوصية</a> | <a href="/terms">الشروط والأحكام</a></p>
-</footer>
-
-<!-- مودال طلب المنتج -->
-<div id="orderModal" class="modal" role="dialog" aria-label="نموذج طلب المنتج">
-    <div class="modal-content">
-        <h2 style="color:#ff3366; margin-bottom:20px;">📝 أطلب المنتج</h2>
-        <form id="orderForm">
-            <input type="text" id="customerName" placeholder="الاسم الكامل" required aria-label="الاسم الكامل">
-            <input type="tel" id="customerPhone" placeholder="رقم الهاتف" required aria-label="رقم الهاتف">
-            <input type="text" id="customerAddress" placeholder="العنوان بالتفصيل" required aria-label="العنوان">
-            <button type="button" id="submitOrderBtn" style="background:#ff3366; color:white; padding:12px; width:100%; margin-top:15px; border:none; border-radius:50px; font-weight:bold;">✅ تأكيد الطلب</button>
-            <button type="button" onclick="closeModal()" style="background:#ccc; margin-top:10px; width:100%;">إلغاء</button>
-        </form>
+    <!-- قسم طلبات العملاء -->
+    <div class="section">
+        <h2>
+            📋 طلبات العملاء
+            <button onclick="deleteAllOrders()" class="delete-all-btn">🗑️ حذف جميع الطلبات</button>
+        </h2>
+        <div id="ordersList"></div>
     </div>
 </div>
 
 <script>
-    // Firebase Configuration - استبدل بقيم مشروعك
+    // 🔥 إعدادات Firebase - نفس الإعدادات الموجودة في index.html
     const firebaseConfig = {
-        apiKey: "YOUR_API_KEY",
+        apiKey: "AIzaSyBvoorbeeldYourActualApiKey123456",     // ⚠️ استبدل بنفس القيم
         authDomain: "coffee-dda5d.firebaseapp.com",
         databaseURL: "https://coffee-dda5d-default-rtdb.firebaseio.com",
         projectId: "coffee-dda5d",
         storageBucket: "coffee-dda5d.firebasestorage.app",
-        messagingSenderId: "YOUR_SENDER_ID",
-        appId: "YOUR_APP_ID"
+        messagingSenderId: "123456789012",                     // ⚠️ استبدل بنفس القيم
+        appId: "1:123456789012:web:abc123def456"               // ⚠️ استبدل بنفس القيم
     };
 
     // تهيئة Firebase
     firebase.initializeApp(firebaseConfig);
     const database = firebase.database();
-    
-    let currentProduct = null;
-    let currentCategory = 'all';
-    let productsCache = {};
 
-    // استماع فوري للمنتجات مع تحسين الأداء
-    function listenToProducts() {
-        database.ref('products').on('value', (snapshot) => {
-            productsCache = snapshot.val() || {};
-            filterProductsByCategory();
-        });
-    }
-
-    function filterProductsByCategory() {
-        if(!productsCache) { 
-            displayProducts([]); 
-            return; 
-        }
-        
-        let productsArray = Object.entries(productsCache).map(([id, data]) => ({ id, ...data }));
-        
-        if(currentCategory !== 'all') {
-            productsArray = productsArray.filter(p => p.category === currentCategory);
-        }
-        
-        displayProducts(productsArray);
-        
-        // تحديث Schema Markup ديناميكياً
-        updateProductSchema(productsArray);
-    }
-
-    function displayProducts(products) {
-        const grid = document.getElementById('productsGrid');
-        
-        if(products.length === 0) {
-            grid.innerHTML = '<div class="empty">🚀 لا توجد منتجات في هذا القسم حالياً<br>ترقبوا أحدث المنتجات الأعلى شراء في السعودية!</div>';
-            return;
-        }
-
-        grid.innerHTML = products.map(product => `
-            <article class="product-card" itemscope itemtype="https://schema.org/Product">
-                <div class="image-container">
-                    <img src="${product.image}" alt="${product.name}" 
-                         onerror="this.src='https://picsum.photos/id/20/300/300'"
-                         loading="lazy"
-                         decoding="async"
-                         itemprop="image">
-                    <div class="trend-badge" itemprop="award">🔥 أعلى شراء في السعودية</div>
-                </div>
-                <div class="product-info">
-                    <h2 class="product-name" itemprop="name">${product.name}</h2>
-                    <div class="product-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-                        <span itemprop="price">${product.price}</span> 
-                        <span itemprop="priceCurrency" content="SAR">ر.س</span>
-                        <meta itemprop="availability" content="https://schema.org/InStock">
-                        <meta itemprop="priceValidUntil" content="2025-12-31">
-                    </div>
-                    <button class="order-btn" onclick="openOrderModal('${product.id}', '${product.name}', '${product.price}', '${product.image}')" 
-                            aria-label="طلب المنتج ${product.name}">
-                        🛒 اطلب الآن - أعلى شراء
-                    </button>
-                </div>
-            </article>
-        `).join('');
-    }
-
-    // تحديث الـ Schema Markup للمنتجات الديناميكية
-    function updateProductSchema(products) {
-        if(products.length === 0) return;
-        
-        const schemaProducts = products.slice(0, 5).map(product => ({
-            "@type": "Product",
-            "name": product.name,
-            "image": product.image,
-            "offers": {
-                "@type": "Offer",
-                "price": product.price,
-                "priceCurrency": "SAR",
-                "availability": "https://schema.org/InStock",
-                "seller": {
-                    "@type": "Organization",
-                    "name": "ترند قطعة واحدة"
-                }
-            },
-            "description": `${product.name} - من أفضل المنتجات الأعلى شراء في السعودية`
-        }));
-        
-        const newSchema = {
-            "@context": "https://schema.org",
-            "@graph": [
-                {
-                    "@type": "ItemList",
-                    "itemListElement": schemaProducts.map((product, index) => ({
-                        "@type": "ListItem",
-                        "position": index + 1,
-                        "item": product
-                    }))
-                }
-            ]
-        };
-        
-        // إضافة أو تحديث عنصر الـ Schema في الـ head
-        let schemaScript = document.querySelector('#dynamic-product-schema');
-        if(schemaScript) {
-            schemaScript.remove();
-        }
-        
-        schemaScript = document.createElement('script');
-        schemaScript.id = 'dynamic-product-schema';
-        schemaScript.type = 'application/ld+json';
-        schemaScript.textContent = JSON.stringify(newSchema);
-        document.head.appendChild(schemaScript);
-    }
-
-    window.openOrderModal = function(id, name, price, image) {
-        currentProduct = { id, name, price, image };
-        document.getElementById('orderModal').style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-        
-        // تتبع حدث الطلب لتحسين SEO (حدث مخصص)
-        if(typeof gtag !== 'undefined') {
-            gtag('event', 'begin_checkout', {
-                'event_category': 'engagement',
-                'event_label': name,
-                'value': price
-            });
-        }
-    };
-
-    window.closeModal = function() {
-        document.getElementById('orderModal').style.display = 'none';
-        document.body.style.overflow = 'auto';
-        document.getElementById('customerName').value = '';
-        document.getElementById('customerPhone').value = '';
-        document.getElementById('customerAddress').value = '';
-    };
-
-    document.getElementById('submitOrderBtn').onclick = function() {
-        const name = document.getElementById('customerName').value.trim();
-        const phone = document.getElementById('customerPhone').value.trim();
-        const address = document.getElementById('customerAddress').value.trim();
-
-        if(!name || !phone || !address) {
-            alert('❌ الرجاء تعبئة جميع الحقول: الاسم، رقم الهاتف، العنوان');
-            return;
-        }
-
-        const orderData = {
-            productId: currentProduct.id,
-            productName: currentProduct.name,
-            productPrice: currentProduct.price,
-            productImage: currentProduct.image,
-            customerName: name,
-            customerPhone: phone,
-            customerAddress: address,
-            timestamp: Date.now(),
-            status: "جديد",
-            location: "السعودية"
-        };
-
-        database.ref('orders').push(orderData).then(() => {
-            alert('✅ تم استلام طلبك بنجاح! سنتصل بك قريباً.');
-            closeModal();
-            
-            // تتبع التحويل
-            if(typeof gtag !== 'undefined') {
-                gtag('event', 'purchase', {
-                    'event_category': 'conversion',
-                    'event_label': currentProduct.name,
-                    'value': currentProduct.price
-                });
-            }
-        }).catch(error => {
-            alert('❌ حدث خطأ: ' + error.message);
-        });
-    };
-
-    // أحداث أزرار الأقسام
-    document.querySelectorAll('.cat-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            currentCategory = btn.getAttribute('data-cat');
-            filterProductsByCategory();
-        });
+    // استماع فوري للمنتجات
+    database.ref('products').on('value', (snapshot) => {
+        const products = snapshot.val();
+        displayProducts(products);
     });
 
-    // بدء الاستماع للمنتجات
-    listenToProducts();
-    
-    // تسجيل الـ Service Worker لتحسين الأداء (اختياري)
-    if('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js').catch(err => console.log('ServiceWorker registration failed: ', err));
+    // استماع فوري للطلبات
+    database.ref('orders').on('value', (snapshot) => {
+        const orders = snapshot.val();
+        displayOrders(orders);
+    });
+
+    function displayProducts(products) {
+        const container = document.getElementById('productsList');
+        if(!products || Object.keys(products).length === 0) {
+            container.innerHTML = '<p style="text-align:center">لا توجد منتجات، أضف منتجاً الآن</p>';
+            return;
+        }
+
+        let html = '';
+        for(const [id, product] of Object.entries(products)) {
+            const categoryName = {
+                electronics: 'إلكترونيات', 
+                fashion: 'فاشون', 
+                entertainment: 'ترفيهية'
+            }[product.category] || 'بدون قسم';
+            
+            html += `
+                <div class="product-item">
+                    <img src="${product.image}" class="product-img" onerror="this.src='https://picsum.photos/id/20/60/60'">
+                    <div style="flex:2">
+                        <strong>${product.name}</strong><br>
+                        ${product.price} ر.س | ${categoryName}
+                    </div>
+                    <button class="delete-btn" onclick="deleteProduct('${id}')">🗑️ حذف</button>
+                </div>
+            `;
+        }
+        container.innerHTML = html;
     }
-</script>
 
-<!-- Google Analytics 4 للتتبع -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
-</script>
+    function displayOrders(orders) {
+        const container = document.getElementById('ordersList');
+        if(!orders || Object.keys(orders).length === 0) {
+            container.innerHTML = '<div class="order-item">📭 لا توجد طلبات حالياً</div>';
+            return;
+        }
 
+        let html = '';
+        // عرض الطلبات من الأحدث إلى الأقدم
+        const ordersArray = Object.entries(orders).reverse();
+        for(const [id, order] of ordersArray) {
+            html += `
+                <div class="order-item" id="order-${id}">
+                    <div class="order-details">
+                        <div class="flex-between">
+                            <span class="highlight">👤 الاسم:</span>
+                            <span>${order.customerName}</span>
+                        </div>
+                        <div class="flex-between">
+                            <span class="highlight">📞 الهاتف:</span>
+                            <span>${order.customerPhone}</span>
+                        </div>
+                        <div class="flex-between">
+                            <span class="highlight">📍 العنوان:</span>
+                            <span>${order.customerAddress}</span>
+                        </div>
+                        <div class="flex-between">
+                            <span class="highlight">🛍️ المنتج:</span>
+                            <span>${order.productName} (${order.productPrice} ر.س)</span>
+                        </div>
+                        <div class="flex-between">
+                            <span class="highlight">🖼️ صورة المنتج:</span>
+                            <a href="${order.productImage}" target="_blank" class="edit-img-link">📷 عرض الصورة</a>
+                        </div>
+                        <div class="flex-between">
+                            <span class="highlight">⏱️ تاريخ الطلب:</span>
+                            <span>${new Date(order.timestamp).toLocaleString('ar-EG')}</span>
+                        </div>
+                        <button onclick="deleteOrder('${id}')" class="complete-btn">✅ تم التوصيل / حذف الطلب</button>
+                    </div>
+                </div>
+            `;
+        }
+        container.innerHTML = html;
+    }
+
+    // إضافة منتج جديد
+    window.addProduct = function() {
+        const image = document.getElementById('productImage').value.trim();
+        const name = document.getElementById('productName').value.trim();
+        const price = parseInt(document.getElementById('productPrice').value);
+        const category = document.getElementById('productCategory').value;
+
+        if(!image || !name || isNaN(price)) {
+            alert('❌ الرجاء تعبئة جميع الحقول: الصورة، الاسم، السعر');
+            return;
+        }
+
+        // تحويل رابط Google Drive إلى رابط مباشر إن أمكن
+        let finalImage = image;
+        if(image.includes('drive.google.com')) {
+            const match = image.match(/\/d\/(.+?)\//) || image.match(/id=([^&]+)/);
+            if(match) {
+                finalImage = `https://drive.google.com/uc?export=view&id=${match[1]}`;
+            }
+        }
+
+        const newProduct = {
+            name: name,
+            price: price,
+            image: finalImage,
+            category: category
+        };
+
+        database.ref('products').push(newProduct)
+            .then(() => {
+                alert('✅ تم إضافة المنتج بنجاح!');
+                document.getElementById('productImage').value = '';
+                document.getElementById('productName').value = '';
+                document.getElementById('productPrice').value = '';
+            })
+            .catch(error => {
+                alert('❌ خطأ في الإضافة: ' + error.message);
+            });
+    };
+
+    // حذف منتج
+    window.deleteProduct = function(productId) {
+        if(confirm('⚠️ هل أنت متأكد من حذف هذا المنتج؟')) {
+            database.ref('products/' + productId).remove()
+                .then(() => alert('✅ تم حذف المنتج بنجاح'))
+                .catch(error => alert('❌ خطأ: ' + error.message));
+        }
+    };
+
+    // حذف طلب واحد (بعد التوصيل)
+    window.deleteOrder = function(orderId) {
+        if(confirm('✅ هل تم توصيل الطلب للعميل؟ سيتم حذفه من القائمة.')) {
+            database.ref('orders/' + orderId).remove()
+                .then(() => alert('✅ تم حذف الطلب'))
+                .catch(error => alert('❌ خطأ: ' + error.message));
+        }
+    };
+
+    // حذف جميع الطلبات
+    window.deleteAllOrders = function() {
+        if(confirm('⚠️ تحذير: هل أنت متأكد من حذف جميع الطلبات؟ لا يمكن التراجع عن هذا الإجراء.')) {
+            database.ref('orders').remove()
+                .then(() => alert('🗑️ تم حذف جميع الطلبات'))
+                .catch(error => alert('❌ خطأ: ' + error.message));
+        }
+    };
+</script>
 </body>
 </html>
