@@ -3,94 +3,239 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ترندي ماركت - متجر المنتجات المميزة</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>ترند قطعة واحدة - أعلى مبيعاً</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', 'Tahoma', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: white;
+            text-shadow: 3px 3px 0 #000;
+            letter-spacing: 2px;
+        }
+
+        .header p {
+            color: #ffeb3b;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .image-container {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            background: #f0f0f0;
+            position: relative;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover .image-container img {
+            transform: scale(1.1);
+        }
+
+        .trend-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff3366;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .product-info {
+            padding: 20px;
+            background: linear-gradient(135deg, #fff, #f9f9f9);
+        }
+
+        .product-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #ff3366;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .product-price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #00d2ff;
+            text-align: center;
+            text-shadow: 1px 1px 0 #000;
+            margin: 10px 0;
+        }
+
+        .product-price::before {
+            content: "💰 ";
+        }
+
+        .order-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 15px;
+        }
+
+        .order-btn:hover {
+            background: linear-gradient(45deg, #ff4b2b, #ff416c);
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(255,75,43,0.4);
+        }
+
+        .empty {
+            text-align: center;
+            color: white;
+            font-size: 1.5rem;
+            padding: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- شاشة التحميل -->
-    <div id="loading-screen">
-        <div class="loader"></div>
-        <h2>ترندي ماركت</h2>
-        <p>أنت غني</p>
+    <div class="header">
+        <h1>🔥 ترند قطعة واحدة 🔥</h1>
+        <p>أعلى مبيعاً والأكثر طلباً الآن!</p>
     </div>
+    <div class="products-grid" id="productsGrid"></div>
 
-    <!-- صفحة العميل -->
-    <div id="client-page">
-        <header>
-            <div class="container">
-                <nav>
-                    <div class="logo">
-                        <i class="fas fa-shopping-bag"></i> ترندي ماركت
-                    </div>
-                    <div class="search-box">
-                        <input type="text" id="search-input" placeholder="ابحث عن المنتجات...">
-                        <button id="search-btn"><i class="fas fa-search"></i> بحث</button>
-                    </div>
-                    <div class="cart-icon">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-count">0</span>
-                    </div>
-                </nav>
-            </div>
-        </header>
+    <script>
+        // تحميل المنتجات من localStorage
+        let products = [];
 
-        <main class="container">
-            <div class="hero-section">
-                <h1>أفضل واحدث المنتجات لعملائنا </h1>
-            </div>
-            
-            <div class="categories">
-                <button class="category-btn active" data-category="all">الكل</button>
-                <button class="category-btn" data-category="electronics">إلكترونيات</button>
-                <button class="category-btn" data-category="fashion">موضة</button>
-                <button class="category-btn" data-category="home">منزلية</button>
-            </div>
-            
-            <div id="products-container" class="products-grid">
-                <!-- المنتجات سيتم تحميلها من localStorage -->
-                <div class="no-products">
-                    <i class="fas fa-box-open"></i>
-                    <h3>لا توجد منتجات حالياً</h3>
-                    <p>سيتم إضافة المنتجات قريباً</p>
-                </div>
-            </div>
-        </main>
+        function loadProducts() {
+            const stored = localStorage.getItem('trend_products');
+            if(stored) {
+                products = JSON.parse(stored);
+            } else {
+                // منتجات افتراضية
+                products = [
+                    { id: 1, name: "سماعات لاسلكية Bass X", price: 299, image: "https://picsum.photos/id/1/300/300" },
+                    { id: 2, name: "ساعة ذكية Ultra Watch", price: 599, image: "https://picsum.photos/id/2/300/300" },
+                    { id: 3, name: "باور بانك 20000mAh", price: 159, image: "https://picsum.photos/id/3/300/300" }
+                ];
+                saveProducts();
+            }
+            displayProducts();
+        }
 
-        <footer>
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-section">
-                        <h3>ترندي ماركت</h3>
-                        <p>متجرك الأول للمنتجات المميزة بأفضل الأسعار</p>
+        function saveProducts() {
+            localStorage.setItem('trend_products', JSON.stringify(products));
+        }
+
+        function displayProducts() {
+            const grid = document.getElementById('productsGrid');
+            if(!products.length) {
+                grid.innerHTML = '<div class="empty">🚀 لا توجد منتجات حالياً، ترقبوا الجديد!</div>';
+                return;
+            }
+
+            grid.innerHTML = products.map(product => `
+                <div class="product-card">
+                    <div class="image-container">
+                        <img src="${product.image}" alt="${product.name}" onerror="this.src='https://picsum.photos/id/20/300/300'">
+                        <div class="trend-badge">🔥 ترند</div>
                     </div>
-                    <div class="footer-section">
-                        <h3>روابط سريعة</h3>
-                        <ul>
-                            <li><a href="index.html">الرئيسية</a></li>
-                            <li><a href="#">منتجاتنا</a></li>
-                            <li><a href="#">عن الشركة</a></li>
-                            <li><a href="#">اتصل بنا</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-section">
-                        <h3>وسائل التواصل</h3>
-                        <div class="social-icons">
-                            <a href="#"><i class="fab fa-facebook"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-whatsapp"></i></a>
-                        </div>
+                    <div class="product-info">
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-price">${product.price} ج.م</div>
+                        <button class="order-btn" onclick="requestProduct(${product.id})">🛒 اطلب الآن</button>
                     </div>
                 </div>
-                <div class="copyright">
-                    <p>© 2026 ترندي مارкет - كل الحقوق محفوظة</p>
-                    <p>صمم خصيصًا للأغنياء الذين يستحقون الأفضل</p>
-                </div>
-            </div>
-        </footer>
-    </div>
+            `).join('');
+        }
 
-    <script src="client.js"></script>
+        window.requestProduct = function(productId) {
+            const product = products.find(p => p.id === productId);
+            if(!product) return;
+
+            const customerName = prompt("أدخل اسمك الكامل:", "عميل جديد");
+            if(!customerName) return;
+
+            const phone = prompt("أدخل رقم هاتفك للتواصل:", "010xxxxxxxx");
+            if(!phone) return;
+
+            const order = {
+                id: Date.now(),
+                productName: product.name,
+                productPrice: product.price,
+                productImage: product.image,
+                customerName: customerName,
+                phone: phone,
+                date: new Date().toLocaleString('ar-EG')
+            };
+
+            // حفظ الطلبات
+            let orders = JSON.parse(localStorage.getItem('trend_orders') || '[]');
+            orders.push(order);
+            localStorage.setItem('trend_orders', JSON.stringify(orders));
+
+            alert(`✅ تم استلام طلبك بنجاح!\nالمنتج: ${product.name}\nسنقوم بالتواصل معك قريباً.`);
+        };
+
+        loadProducts();
+    </script>
 </body>
 </html>
