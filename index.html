@@ -3,239 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ترند قطعة واحدة - أعلى مبيعاً</title>
+    <title>لوحة تحكم ترند | تحديث لحظي</title>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Cairo', 'Tahoma', sans-serif;
-        }
-
-        body {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            padding: 20px;
-        }
-
-        .header {
-            text-align: center;
-            padding: 30px;
-            background: linear-gradient(45deg, #ff416c, #ff4b2b);
-            border-radius: 20px;
-            margin-bottom: 40px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            color: white;
-            text-shadow: 3px 3px 0 #000;
-            letter-spacing: 2px;
-        }
-
-        .header p {
-            color: #ffeb3b;
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-
-        .image-container {
-            width: 100%;
-            height: 250px;
-            overflow: hidden;
-            background: #f0f0f0;
-            position: relative;
-        }
-
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        .product-card:hover .image-container img {
-            transform: scale(1.1);
-        }
-
-        .trend-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #ff3366;
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 0.8rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-
-        .product-info {
-            padding: 20px;
-            background: linear-gradient(135deg, #fff, #f9f9f9);
-        }
-
-        .product-name {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #ff3366;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        .product-price {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #00d2ff;
-            text-align: center;
-            text-shadow: 1px 1px 0 #000;
-            margin: 10px 0;
-        }
-
-        .product-price::before {
-            content: "💰 ";
-        }
-
-        .order-btn {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(45deg, #ff416c, #ff4b2b);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 15px;
-        }
-
-        .order-btn:hover {
-            background: linear-gradient(45deg, #ff4b2b, #ff416c);
-            transform: scale(1.02);
-            box-shadow: 0 5px 15px rgba(255,75,43,0.4);
-        }
-
-        .empty {
-            text-align: center;
-            color: white;
-            font-size: 1.5rem;
-            padding: 50px;
-        }
-
-        @media (max-width: 768px) {
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+        body { background: #0f0f1a; padding: 20px; color: white; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        h1 { text-align: center; margin-bottom: 30px; color: #ff4b2b; }
+        .section { background: #1e1e2f; border-radius: 20px; padding: 25px; margin-bottom: 40px; }
+        .section h2 { color: #ffb347; margin-bottom: 20px; border-right: 4px solid #ff4b2b; padding-right: 15px; }
+        input, textarea { width: 100%; padding: 12px; border-radius: 10px; border: none; background: #2a2a3a; color: white; margin-bottom: 15px; }
+        button { background: linear-gradient(45deg, #ff416c, #ff4b2b); color: white; padding: 12px 30px; border: none; border-radius: 50px; cursor: pointer; font-weight: bold; }
+        .product-item, .order-item { background: #2a2a3a; border-radius: 15px; padding: 15px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .product-img { width: 60px; height: 60px; object-fit: cover; border-radius: 10px; }
+        .delete-btn { background: #dc3545; padding: 6px 15px; }
+        .order-details { flex: 1; }
+        .order-details p { margin: 5px 0; }
+        .highlight { color: #ffb347; font-weight: bold; }
+        .edit-img-link { background: #28a745; padding: 6px 12px; border-radius: 8px; text-decoration: none; color: white; display: inline-block; }
+        .flex-between { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+        @media (max-width: 768px) { .product-item, .order-item { flex-direction: column; align-items: stretch; } }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>🔥 ترند قطعة واحدة 🔥</h1>
-        <p>أعلى مبيعاً والأكثر طلباً الآن!</p>
+<div class="container">
+    <h1>🔧 لوحة تحكم ترند قطعة واحدة (تحديث لحظي)</h1>
+
+    <div class="section">
+        <h2>➕ إضافة منتج جديد</h2>
+        <input type="text" id="productImage" placeholder="رابط الصورة (Google Drive أو أي رابط مباشر)">
+        <input type="text" id="productName" placeholder="اسم المنتج">
+        <input type="number" id="productPrice" placeholder="السعر (ج.م)">
+        <button onclick="addProduct()">✨ إضافة المنتج ✨</button>
     </div>
-    <div class="products-grid" id="productsGrid"></div>
 
-    <script>
-        // تحميل المنتجات من localStorage
-        let products = [];
+    <div class="section">
+        <h2>📦 المنتجات المعروضة (تحكم كامل)</h2>
+        <div id="productsList"></div>
+    </div>
 
-        function loadProducts() {
-            const stored = localStorage.getItem('trend_products');
-            if(stored) {
-                products = JSON.parse(stored);
-            } else {
-                // منتجات افتراضية
-                products = [
-                    { id: 1, name: "سماعات لاسلكية Bass X", price: 299, image: "https://picsum.photos/id/1/300/300" },
-                    { id: 2, name: "ساعة ذكية Ultra Watch", price: 599, image: "https://picsum.photos/id/2/300/300" },
-                    { id: 3, name: "باور بانك 20000mAh", price: 159, image: "https://picsum.photos/id/3/300/300" }
-                ];
-                saveProducts();
-            }
-            displayProducts();
+    <div class="section">
+        <h2>📋 طلبات العملاء (فورية)</h2>
+        <div id="ordersList"></div>
+    </div>
+</div>
+
+<script>
+    const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "coffee-dda5d.firebaseapp.com",
+        databaseURL: "https://coffee-dda5d-default-rtdb.firebaseio.com",
+        projectId: "coffee-dda5d",
+        storageBucket: "coffee-dda5d.firebasestorage.app",
+        messagingSenderId: "YOUR_SENDER_ID",
+        appId: "YOUR_APP_ID"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+
+    // استماع فوري للمنتجات
+    database.ref('products').on('value', (snapshot) => {
+        const products = snapshot.val();
+        displayProducts(products);
+    });
+
+    // استماع فوري للطلبات
+    database.ref('orders').on('value', (snapshot) => {
+        const orders = snapshot.val();
+        displayOrders(orders);
+    });
+
+    function displayProducts(products) {
+        const container = document.getElementById('productsList');
+        if(!products || Object.keys(products).length === 0) {
+            container.innerHTML = '<p>لا توجد منتجات، أضف منتجاً الآن</p>';
+            return;
         }
 
-        function saveProducts() {
-            localStorage.setItem('trend_products', JSON.stringify(products));
+        let html = '';
+        for(const [id, product] of Object.entries(products)) {
+            html += `
+                <div class="product-item">
+                    <img src="${product.image}" class="product-img" onerror="this.src='https://picsum.photos/id/20/60/60'">
+                    <div style="flex:2"><strong>${product.name}</strong><br>${product.price} ج.م</div>
+                    <button class="delete-btn" onclick="deleteProduct('${id}')">🗑️ حذف</button>
+                </div>
+            `;
+        }
+        container.innerHTML = html;
+    }
+
+    function displayOrders(orders) {
+        const container = document.getElementById('ordersList');
+        if(!orders || Object.keys(orders).length === 0) {
+            container.innerHTML = '<div class="order-item">📭 لا توجد طلبات حالياً</div>';
+            return;
         }
 
-        function displayProducts() {
-            const grid = document.getElementById('productsGrid');
-            if(!products.length) {
-                grid.innerHTML = '<div class="empty">🚀 لا توجد منتجات حالياً، ترقبوا الجديد!</div>';
-                return;
-            }
-
-            grid.innerHTML = products.map(product => `
-                <div class="product-card">
-                    <div class="image-container">
-                        <img src="${product.image}" alt="${product.name}" onerror="this.src='https://picsum.photos/id/20/300/300'">
-                        <div class="trend-badge">🔥 ترند</div>
-                    </div>
-                    <div class="product-info">
-                        <div class="product-name">${product.name}</div>
-                        <div class="product-price">${product.price} ج.م</div>
-                        <button class="order-btn" onclick="requestProduct(${product.id})">🛒 اطلب الآن</button>
+        let html = '';
+        for(const [id, order] of Object.entries(orders).reverse()) {
+            html += `
+                <div class="order-item">
+                    <div class="order-details">
+                        <div class="flex-between">
+                            <span class="highlight">👤 الاسم:</span> <span>${order.customerName}</span>
+                        </div>
+                        <div class="flex-between">
+                            <span class="highlight">📞 الهاتف:</span> <span>${order.customerPhone}</span>
+                        </div>
+                        <div class="flex-between">
+                            <span class="highlight">📍 العنوان:</span> <span>${order.customerAddress}</span>
+                        </div>
+                        <div class="flex-between">
+                            <span class="highlight">🛍️ المنتج:</span> <span>${order.productName} (${order.productPrice} ج.م)</span>
+                        </div>
+                        <div class="flex-between">
+                            <span class="highlight">🖼️ صورة المنتج:</span>
+                            <a href="${order.productImage}" target="_blank" class="edit-img-link">عرض الصورة</a>
+                        </div>
+                        <div class="flex-between">
+                            <span class="highlight">⏱️ الوقت:</span> <span>${new Date(order.timestamp).toLocaleString('ar-EG')}</span>
+                        </div>
                     </div>
                 </div>
-            `).join('');
+            `;
+        }
+        container.innerHTML = html;
+    }
+
+    window.addProduct = function() {
+        const image = document.getElementById('productImage').value.trim();
+        const name = document.getElementById('productName').value.trim();
+        const price = parseInt(document.getElementById('productPrice').value);
+
+        if(!image || !name || isNaN(price)) {
+            alert('❌ الرجاء تعبئة جميع الحقول');
+            return;
         }
 
-        window.requestProduct = function(productId) {
-            const product = products.find(p => p.id === productId);
-            if(!product) return;
+        // تحويل رابط درايف إلى رابط مباشر
+        let finalImage = image;
+        if(image.includes('drive.google.com')) {
+            const match = image.match(/\/d\/(.+?)\//) || image.match(/id=([^&]+)/);
+            if(match) finalImage = `https://drive.google.com/uc?export=view&id=${match[1]}`;
+        }
 
-            const customerName = prompt("أدخل اسمك الكامل:", "عميل جديد");
-            if(!customerName) return;
+        const newProduct = { name, price: price, image: finalImage };
+        database.ref('products').push(newProduct).then(() => {
+            alert('✅ تم إضافة المنتج بنجاح!');
+            document.getElementById('productImage').value = '';
+            document.getElementById('productName').value = '';
+            document.getElementById('productPrice').value = '';
+        });
+    };
 
-            const phone = prompt("أدخل رقم هاتفك للتواصل:", "010xxxxxxxx");
-            if(!phone) return;
-
-            const order = {
-                id: Date.now(),
-                productName: product.name,
-                productPrice: product.price,
-                productImage: product.image,
-                customerName: customerName,
-                phone: phone,
-                date: new Date().toLocaleString('ar-EG')
-            };
-
-            // حفظ الطلبات
-            let orders = JSON.parse(localStorage.getItem('trend_orders') || '[]');
-            orders.push(order);
-            localStorage.setItem('trend_orders', JSON.stringify(orders));
-
-            alert(`✅ تم استلام طلبك بنجاح!\nالمنتج: ${product.name}\nسنقوم بالتواصل معك قريباً.`);
-        };
-
-        loadProducts();
-    </script>
+    window.deleteProduct = function(productId) {
+        if(confirm('هل أنت متأكد من حذف هذا المنتج؟')) {
+            database.ref('products/' + productId).remove()
+                .then(() => alert('✅ تم الحذف'))
+                .catch(err => alert('❌ خطأ: ' + err.message));
+        }
+    };
+</script>
 </body>
 </html>
